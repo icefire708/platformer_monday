@@ -1,7 +1,7 @@
 import pygame
 
 class Character:
-    def __init__(self, coords: tuple, image=None, w=100, h=200) -> None:
+    def __init__(self, coords: tuple, image=None, w=100, h=150) -> None:
         self.HP = 10
         self.x, self.y = coords
         self.w, self.h = w, h
@@ -16,8 +16,15 @@ class Character:
     def attack(self) -> None:
         print('Я атаковал!!!')
 
-    def move_and_show(self, screen) -> None:
-        self.x += self.direction * self.velocity
+    def move_and_show(self, screen, location) -> None:
+        pos = location.check_x(
+            self.x + self.w // 2, self.direction * self.velocity + self.w // 2, 
+            self.y - self.h // 2, self.h,
+            self.direction
+        )
+        self.x = pos - self.w // 2
+
+
         # self.y += self.jump_speed
         # if self.jump_speed:
         #     self.jump_speed += 15
