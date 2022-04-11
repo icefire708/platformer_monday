@@ -41,7 +41,7 @@ class Location:
                         return col * self.side
             return x_start + w
         if direction == -1:
-            pass
+            pass # тут должен начать появляться код
         raise Exception('Неверное направление')
 
 def main() -> None:
@@ -52,7 +52,7 @@ def main() -> None:
     print('Game started!')
     player = Character((100, 400), image='character_view.png')
     handler = Key_controller(player)
-    player.attack()
+    # player.attack()
     while True:
         events = pygame.event.get()
         for event in events:
@@ -60,8 +60,6 @@ def main() -> None:
                 exit()
             elif event.type == pygame.KEYDOWN:
                 handler.key_down(event.key)
-
-
 
         current_location.draw(screen)
         player.move_and_show(screen, current_location)
